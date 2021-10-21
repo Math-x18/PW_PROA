@@ -1,0 +1,153 @@
+<html>
+
+<head>
+
+	<script>
+		var saldo = 100.0;
+
+		function inicio() {
+			
+			var nome = prompt("Digite seu nome:")
+
+			var escolha = parseInt(prompt("Olá " +nome+ " é um prazer ter você por aqui! Selecione uma opção 1.) Saldo 2.) Extrato 3.) Saque 4.)Depósito 5.)Transferência 6.)Sair"));
+
+			switch (escolha) {
+                case 1:
+                    ver_saldo();
+                case 2:
+                    ver_extrato();
+                case 3:
+                    fazer_saque();
+                case 4:
+                    fazer_deposito();
+                case 5:
+                    fazer_transferencia();
+                case 6:
+                    sair();
+            }
+		}		
+
+		function ver_saldo() {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_extrato(){
+			var senha = prompt("Insira a sua senha: ")
+
+            if (senha == 3589) {
+                alert("Saldo dia 10/09: 400,00 " + "Casas Bahia = 320,00 " + "Lojas Americanas: 60,00 " +
+                    "Depósito 11/09: 100,00")
+                inicio();
+            } else {
+                alert("Senha Incorreta");
+                ver_extrato();
+
+            }var senha = prompt("Insira a sua senha: ")
+
+            if (senha == 3589) {
+                alert("Saldo dia 10/09: 400,00 " + "Casas Bahia = 320,00 " + "Lojas Americanas: 60,00 " +
+                    "Depósito 11/09: 100,00")
+                inicio();
+            } else {
+                alert("Senha Incorreta");
+                inicio();
+
+            }
+		}
+
+		function fazer_saque() {
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if(saque<=saldo){
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+				ver_saldo();
+			}
+			}
+			if(saque>saldo){
+				alert("Operação não autorizada, tente um valor até:"+saldo);
+				fazer_saque();
+			}
+		}
+
+		function fazer_deposito() {
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			if(deposito>0){
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				ver_saldo();
+			}
+			}if(deposito<=0){
+
+				alert("Operação não autorizada, tente um valor maior que 0.");
+				fazer_deposito();
+
+			}
+		}
+
+		function transferencia() {
+            pedir_senha();
+            var conta = parseFloat(prompt('Qual o número da conta?'));
+            if (isNaN(conta) || conta === '') {
+                alert('Por favor, informe um número:');
+                transferencia();
+            }
+            var transferencia = parseFloat(prompt('Qual o valor para transferência?'));
+            if (isNaN(transferencia) || transferencia === '') {
+                alert('Por favor, informe um número:');
+                transferencia();
+            }
+            if (transferencia > saldo) {
+                alert("Saldo insuficiente.");
+                transferencia();
+            }
+            else if (transferencia <= 0) {
+                alert("Operação não autorizada.");
+                transferencia();
+            } else {
+                saldo -= transferencia;
+                alert("Transferência efetuada com sucesso para a conta " + conta + "\n Saldo atual R$:" + saldo);
+                inicio();
+            }
+        }
+
+		function pedir_senha() {
+            var senhaUsuario = Number(prompt("Digite sua senha"));
+            if (senhaUsuario === senha) {
+                alert("Senha correta!");
+            } else {
+                alert("Senha incorreta, digite novamente.");
+                senha();
+            }
+        }
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				alert(nome+ " , foi um prazer ter você por aqui");
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
